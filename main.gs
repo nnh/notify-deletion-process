@@ -34,6 +34,18 @@ function getAssetManagementInfo(){
     notifyWorkInformation(arrayInfo.ssUrl);
   }
 }
+function getboxCollaboratorInfo(){
+  let arrayInfo = {};
+  arrayInfo.ssUrl = PropertiesService.getScriptProperties().getProperty('boxCollaborator');
+  arrayInfo.sheetName = 'フォームの回答 2';
+  arrayInfo.targetItemindex = 5;
+  arrayInfo.targetItemName = '登録';
+  const sheetValues = getSoftwareUsers(arrayInfo);
+  const planToDelete = getDelTarget(sheetValues, 13, 15);
+  if (planToDelete.length > 1){
+    notifyWorkInformation(arrayInfo.ssUrl);
+  }
+}
 /**
  * Get information about the spreadsheet.
  * @param {Object} associative array.
@@ -74,4 +86,6 @@ function registerScriptProperty(){
   PropertiesService.getScriptProperties().setProperty('targetUrl', 'https://chat.googleapis.com/...');
   // Set the URL of the spreadsheet that contains the Prime Drive information.
   PropertiesService.getScriptProperties().setProperty('assetManagement', 'https://docs.google.com/spreadsheets/...');
+  // Set the URL of the spreadsheet that contains the Box information.
+  PropertiesService.getScriptProperties().setProperty('boxCollaborator', 'https://docs.google.com/spreadsheets/...');
 }
