@@ -69,7 +69,7 @@ function getSoftwareUsers(arrayInfo){
  */ 
 function getDelTarget(inputValues, planToDeleteCol, deleteCol){
   let checkDate = new Date();
-  checkDate.setDate(checkDate.getDate() + 7);
+  checkDate.setDate(checkDate.getDate() + 1);
   const planToDeleteValues = inputValues.filter((x, idx) => x[planToDeleteCol] != '' || idx == 0);
   let notDeleted = planToDeleteValues.filter((x, idx) => !x[deleteCol] || idx == 0);
   notDeleted = notDeleted.filter((x, idx) => x[planToDeleteCol] < checkDate || idx == 0);
